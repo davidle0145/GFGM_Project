@@ -1,21 +1,14 @@
 import express from 'express'
+import { userController } from '../controllers/indexController.js'
 
 const router = express.Router()
 
-router.get('/users', (req, res) => {
-    res.send('GET all users')
-})
+router.get('/', userController.getAllUser)
 
-router.get('/users/:id', (req, res) => {
-    res.send('GET user by ID')
-})
+router.get('/:id', userController.getUserById)
 
-router.post('/users/insert', (req, res) => {
-    res.send('INSERT user')
-})
+router.post('/insert', userController.insertUser)
 
-router.patch('/users/update', (req, res) => {
-    res.send('UPDATE information users')
-})
+router.patch('/update', userController.updateUser)
 
 export default router

@@ -1,6 +1,6 @@
-import { Schema, ObjectId } from 'mongoose'
-import mongoose from 'mongoose'
-import isEmail from 'validator/lib/isemail'
+import { Schema, ObjectId } from "mongoose"
+import mongoose from "mongoose"
+import isEmail from 'validator/lib/isemail.js'
 
 const User = mongoose.model('User',
     new Schema({
@@ -11,7 +11,7 @@ const User = mongoose.model('User',
             type: String,
             required: true,
             validate: {
-                validator: (name) => name.length > 10,
+                validator: (name) => name.length >= 10,
                 message: 'Name must be at least 10 characters'
             }
         },
@@ -27,8 +27,16 @@ const User = mongoose.model('User',
             type: String,
             required: true,
             validate: {
-                validator: (password) => password.length > 8,
+                validator: (password) => password.length >= 8,
                 message: 'Password must be at least 8 characters'
+            }
+        },
+        gender: {
+            type: String,
+            required: true,
+            enum: {
+                values: ['Male', 'Female', 'Other'],
+                message: '{VALUE} is not supported'
             }
         },
         phoneNumber: {
@@ -38,6 +46,10 @@ const User = mongoose.model('User',
         address: {
             type: String,
             //required: true,
+        },
+        role: {
+            type: String,
+            required: true
         },
     })
 )

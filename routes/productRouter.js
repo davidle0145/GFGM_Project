@@ -1,21 +1,14 @@
 import express from 'express'
+import { productController } from '../controllers/indexController.js'
 
 const router = express.Router()
 
-router.get('/products', (req, res) => {
-    res.send('GET all products')
-})
+router.get('/', productController.getAllProduct)
 
-router.get('/products/:id', (req, res) => {
-    res.send('GET product by ID')
-})
+router.get('/:id', productController.getProductById)
 
-router.post('/products/insert', (req, res) => {
-    res.send('INSERT product')
-})
+router.post('/insert', productController.insertProduct)
 
-router.patch('/products/update', (req, res) => {
-    res.send('UPDATE information products')
-})
+router.patch('/update', productController.updateProduct)
 
 export default router

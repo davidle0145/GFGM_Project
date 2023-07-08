@@ -1,5 +1,5 @@
-import { Schema, ObjectId } from 'mongoose'
-import mongoose from 'mongoose'
+import { Schema, ObjectId } from "mongoose"
+import mongoose from "mongoose"
 
 const Product =  mongoose.model('Product',
     new Schema({
@@ -7,15 +7,15 @@ const Product =  mongoose.model('Product',
             type: ObjectId
         },
         idUser: {
-            type: ObjectId,
+            type: String,
             required: true,
         },
         name: {
             type: String,
             required: true,
             validate: {
-                validator: (name) => name.length > 1,
-                message: 'Name must be at least 1 characters'
+                validator: (name) => name.length >= 2,
+                message: 'Name must be at least 2 characters'
             }
         },
         price: {
@@ -30,6 +30,7 @@ const Product =  mongoose.model('Product',
             type: String,
             required: true,
             validate: {
+                validator: (description) => description.length > 0,
                 message: 'Please enter product description'
             }
         },
